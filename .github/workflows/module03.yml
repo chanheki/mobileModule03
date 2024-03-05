@@ -2,9 +2,7 @@ name: iOS Multiple Projects Build and Artifact Workflow
 
 on:
   push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+    branches: [ "develop" ]
 
 jobs:
   build-module03:

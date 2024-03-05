@@ -56,16 +56,16 @@ struct WeatherDetailChartView: View {
                     x: .value("Selected", selectedDate, unit: .day)
                 )
                 .foregroundStyle(Color.gray.opacity(0.3))
-                .zIndex(1)
-                .annotation(
-                    position: .top, spacing: 0,
-                    overflowResolution: .init(
-                        x: .fit(to: .chart),
-                        y: .disabled
-                    )
-                ) {
-                    valueSelectionPopover
-                }
+//                .zIndex(1)
+//                .annotation(
+//                    position: .top, spacing: 0,
+//                    overflowResolution: .init(
+//                        x: .fit(to: .chart),
+//                        y: .disabled
+//                    )
+//                ) {
+//                    valueSelectionPopover
+//                }
             }
         }
         .chartForegroundStyleScale { colorTemperature[$0]! }
@@ -80,7 +80,7 @@ struct WeatherDetailChartView: View {
                 AxisValueLabel(format: .dateTime.weekday(.abbreviated), centered: true)
             }
         }
-        .chartXSelection(value: $rawSelectedDate)
+//        .chartXSelection(value: $rawSelectedDate)
     }
 
     @ViewBuilder

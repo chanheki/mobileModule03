@@ -1,0 +1,26 @@
+name: iOS Multiple Projects Build and Artifact Workflow
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build-weatherplus:
+    name: Build WeatherPlus
+    runs-on: macos-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Build WeatherPlus Project
+        run: |
+          xcodebuild build-for-testing -project WeatherApp/weatherplusproj/weather_proj.xcodeproj -scheme weather_proj -destination 'platform=iOS Simulator,name=iPhone 14 Pro Max' -derivedDataPath './WeatherApp/build'
+
+      - name: Upload WeatherPlus Build Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: weatherplus-build-artifacts
+          path: WeatherApp/build/Build/Products/*

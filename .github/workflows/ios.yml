@@ -1,4 +1,4 @@
-name: iOS Multiple Projects Build and Test Workflow
+name: iOS Multiple Projects Build and Artifact Workflow
 
 on:
   push:
@@ -13,14 +13,14 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Build Module03 Project
         run: |
           xcodebuild build-for-testing -project Module03/weatherfinal_proj/weather_proj.xcodeproj -scheme weather_proj -destination 'platform=iOS Simulator,name=iPhone 14 Pro Max' -derivedDataPath './Module03/build'
       
       - name: Upload Module03 Build Artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: module03-build-artifacts
           path: Module03/build/Build/Products/*
@@ -32,14 +32,14 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Build WeatherPlus Project
         run: |
           xcodebuild build-for-testing -project WeatherApp/weatherplusproj/weather_proj.xcodeproj -scheme weather_proj -destination 'platform=iOS Simulator,name=iPhone 14 Pro Max' -derivedDataPath './WeatherPlus/build'
       
       - name: Upload WeatherPlus Build Artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: weatherplus-build-artifacts
           path: WeatherPlus/build/Build/Products/*

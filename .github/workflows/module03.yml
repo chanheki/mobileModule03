@@ -24,22 +24,3 @@ jobs:
         with:
           name: module03-build-artifacts
           path: Module03/build/Build/Products/*
-
-  build-weatherplus:
-    name: Build WeatherPlus
-    runs-on: macos-latest
-    needs: build-module03
-
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Build WeatherPlus Project
-        run: |
-          xcodebuild build-for-testing -project WeatherApp/weatherplusproj/weather_proj.xcodeproj -scheme weather_proj -destination 'platform=iOS Simulator,name=Any iOS Simulator Device' -derivedDataPath './WeatherPlus/build'
-      
-      - name: Upload WeatherPlus Build Artifacts
-        uses: actions/upload-artifact@v4
-        with:
-          name: weatherplus-build-artifacts
-          path: WeatherPlus/build/Build/Products/*

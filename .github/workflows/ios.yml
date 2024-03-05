@@ -17,8 +17,8 @@ jobs:
 
       - name: Build and Test Module03 Project
         run: |
-          xcodebuild build-for-testing -project Module03/YourModuleName.xcodeproj -scheme YourModuleScheme -destination 'platform=iOS Simulator,name=iPhone 13'
-          xcodebuild test-without-building -project Module03/YourModuleName.xcodeproj -scheme YourModuleScheme -destination 'platform=iOS Simulator,name=iPhone 13'
+          xcodebuild build-for-testing -project Module03/weather_proj.xcodeproj -scheme weather_proj -destination 'platform=iOS Simulator,name=iPhone 15'
+          xcodebuild test-without-building -project Module03/weather_proj.xcodeproj -scheme weather_proj -destination 'platform=iOS Simulator,name=iPhone 15'
       
       - name: Upload Module03 Build Artifacts
         uses: actions/upload-artifact@v3
@@ -37,8 +37,8 @@ jobs:
 
       - name: Build and Test WeatherPlus Project
         run: |
-          xcodebuild build-for-testing -project WeatherApp/weatherplusproj/YourWeatherPlusName.xcodeproj -scheme YourWeatherPlusScheme -destination 'platform=iOS Simulator,name=iPhone 13'
-          xcodebuild test-without-building -project WeatherApp/weatherplusproj/YourWeatherPlusName.xcodeproj -scheme YourWeatherPlusScheme -destination 'platform=iOS Simulator,name=iPhone 13'
+          xcodebuild build-for-testing -project WeatherApp/weatherplusproj/weather_proj.xcodeproj -scheme weather_proj -destination 'platform=iOS Simulator,name=iPhone 15'
+          xcodebuild test-without-building -project WeatherApp/weatherplusproj/weather_proj.xcodeproj -scheme weather_proj -destination 'platform=iOS Simulator,name=iPhone 15'
       
       - name: Upload WeatherPlus Build Artifacts
         uses: actions/upload-artifact@v3

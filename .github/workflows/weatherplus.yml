@@ -1,4 +1,4 @@
-name: iOS Multiple Projects Build and Artifact Workflow
+name: iOS weather plus Projects Build and Artifact Workflow
 
 on:
   push:
@@ -9,7 +9,7 @@ on:
 jobs:
   build-weatherplus:
     name: Build WeatherPlus
-    runs-on: macos-latest
+    runs-on: macos-11
 
     steps:
       - name: Checkout

@@ -17,14 +17,14 @@ jobs:
 
       - name: Build and Test Module03 Project
         run: |
-          xcodebuild build-for-testing -project Module03/weatherfinal_proj/weather_proj.xcodeproj -scheme weather_proj -destination 'platform=iOS Simulator,name=iPhone 15'
-          xcodebuild test-without-building -project Module03/weatherfinal_proj/weather_proj.xcodeproj -scheme weather_proj -destination 'platform=iOS Simulator,name=iPhone 15'
+          xcodebuild build-for-testing -project Module03/weatherfinal_proj/weather_proj.xcodeproj -scheme weather_proj -destination 'platform=iOS Simulator,name=iPhone 14 Pro Max' -derivedDataPath './build'
+          xcodebuild test-without-building -project Module03/weatherfinal_proj/weather_proj.xcodeproj -scheme weather_proj -destination 'platform=iOS Simulator,name=iPhone 14 Pro Max' -derivedDataPath './build'
       
       - name: Upload Module03 Build Artifacts
         uses: actions/upload-artifact@v3
         with:
           name: module03-build-artifacts
-          path: Module03/YourBuildOutputPath/*
+          path: Module03/build/Build/Products/*
 
   build-and-test-weatherplus:
     name: Build and Test WeatherPlus
@@ -37,11 +37,11 @@ jobs:
 
       - name: Build and Test WeatherPlus Project
         run: |
-          xcodebuild build-for-testing -project WeatherApp/weatherplusproj/weather_proj.xcodeproj -scheme weather_proj -destination 'platform=iOS Simulator,name=iPhone 15'
-          xcodebuild test-without-building -project WeatherApp/weatherplusproj/weather_proj.xcodeproj -scheme weather_proj -destination 'platform=iOS Simulator,name=iPhone 15'
+          xcodebuild build-for-testing -project WeatherApp/weatherplusproj/weather_proj.xcodeproj -scheme weather_proj -destination 'platform=iOS Simulator,name=iPhone 14 Pro Max' -derivedDataPath './build'
+          xcodebuild test-without-building -project WeatherApp/weatherplusproj/weather_proj.xcodeproj -scheme weather_proj -destination 'platform=iOS Simulator,name=iPhone 14 Pro Max' -derivedDataPath './build'
       
       - name: Upload WeatherPlus Build Artifacts
         uses: actions/upload-artifact@v3
         with:
           name: weatherplus-build-artifacts
-          path: WeatherApp/weatherplusproj/YourBuildOutputPath/*
+          path: WeatherApp/weatherplusproj/build/Build/Products/*

@@ -1,4 +1,6 @@
-# Weather App
+# Weather Cast App
+
+This project was built with the SwiftUI.
 
 This app uses the [OpenAPI](https://open-meteo.com/en/docs/geocoding-api) library.
 
@@ -15,9 +17,13 @@ I didn't do much, but it gave me the experience of creating and resolving an iss
 ## What I learned
 
 - [SwiftUI](https://developer.apple.com/documentation/swiftui/)
-- [Chart](https://developer.apple.com/documentation/charts)
-- [open-meteo Weather Library](https://github.com/open-meteo/sdk)
+- [open-meteo Weather OpenAPI](https://open-meteo.com/en/docs/geocoding-api)
+- [open-meteo Weather Library SDK](https://github.com/open-meteo/sdk)
 - [SwiftUI AutoLayout](https://developer.apple.com/documentation/swiftui/GeometryReader)
+- [Chart](https://developer.apple.com/documentation/charts)
+- [Pages with organized charts](https://chanhhh.tistory.com/210)
+- Chart Data Expression
+- Swift Data Structure
 - Peer Soft Skill
 
 |||
@@ -32,6 +38,7 @@ I didn't do much, but it gave me the experience of creating and resolving an iss
 ## A quick look at SWIFT code
 
 ``` Swift
+
 var body: some View {
     Chart{
         ForEach(weeklyData) { series in
@@ -78,4 +85,46 @@ var body: some View {
     .chartXSelection(value: $rawSelectedDate)
 }
 
+// Mock data
+static let weeklydata: [WeatherSeries] = [
+    .init(temperatureType: "Max Temperature", temperatureData: [
+        (day: date(year: 2022, month: 5, day: 2), temperature: Float(15.3)),
+        (day: date(year: 2022, month: 5, day: 3), temperature: Float(6.2)),
+        (day: date(year: 2022, month: 5, day: 4), temperature: Float(19.1)),
+        (day: date(year: 2022, month: 5, day: 5), temperature: Float(15.4)),
+        (day: date(year: 2022, month: 5, day: 6), temperature: Float(4.5)),
+        (day: date(year: 2022, month: 5, day: 7), temperature: Float(11)),
+        (day: date(year: 2022, month: 5, day: 8), temperature: Float(19.9))
+        ]),
+    .init(temperatureType: "Min Temperature", temperatureData: [
+        (day: date(year: 2022, month: 5, day: 2), temperature: Float(5.3)),
+        (day: date(year: 2022, month: 5, day: 3), temperature: Float(-6.2)),
+        (day: date(year: 2022, month: 5, day: 4), temperature: Float(9.1)),
+        (day: date(year: 2022, month: 5, day: 5), temperature: Float(-15.4)),
+        (day: date(year: 2022, month: 5, day: 6), temperature: Float(-4.5)),
+        (day: date(year: 2022, month: 5, day: 7), temperature: Float(-11)),
+        (day: date(year: 2022, month: 5, day: 8), temperature: Float(9.9))
+        ]),
+]
+
+// Transformation Code
+private func prepareWeeklyData() -> [WeeklyWeatherData.WeatherSeries] {
+        guard let weatherData = weatherManager.weatherData else { return [] }
+        
+        let maxTemperatureSeries = WeeklyWeatherData.WeatherSeries(
+            temperatureType: "Max Temperature",
+            temperatureData: weatherData.daily.time.indices.map { index in
+                (day: weatherData.daily.time[index], temperature: weatherData.daily.temperature2mMax[index])
+            }
+        )
+        
+        let minTemperatureSeries = WeeklyWeatherData.WeatherSeries(
+            temperatureType: "Min Temperature",
+            temperatureData: weatherData.daily.time.indices.map { index in
+                (day: weatherData.daily.time[index], temperature: weatherData.daily.temperature2mMin[index])
+            }
+        )
+        
+        return [maxTemperatureSeries, minTemperatureSeries]
+    }
 ```
